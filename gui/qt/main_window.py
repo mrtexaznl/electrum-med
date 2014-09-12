@@ -326,7 +326,7 @@ class ElectrumWindow(QMainWindow):
 
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
-        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://electrum-med.org"))
+        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://social.mediterraneancoin.org"))
         help_menu.addSeparator()
         help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://electrum-med.org/documentation.html")).setShortcut(QKeySequence.HelpContents)
         help_menu.addAction(_("&Report Bug"), self.show_report_bug)
@@ -476,9 +476,9 @@ class ElectrumWindow(QMainWindow):
     def create_history_menu(self, position):
         self.history_list.selectedIndexes()
         item = self.history_list.currentItem()
-        be = self.config.get('block_explorer', 'explorer.litecoin.net')
-        if be == 'explorer.litecoin.net':
-            block_explorer = 'http://explorer.litecoin.net/tx/'
+        be = self.config.get('block_explorer', 'explorer.mediterraneancoin.org')
+        if be == 'explorer.mediterraneancoin.org':
+            block_explorer = 'http://explorer.mediterraneancoin.org/tx/'
         elif be == 'block-explorer.com':
             block_explorer = 'http://block-explorer.com/tx/'
         elif be == 'Blockr.io':

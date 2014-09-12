@@ -113,10 +113,10 @@ setup(
         'electrum_med_plugins.qrscanner',
         'electrum_med_plugins.virtualkeyboard',
     ],
-    description="Lightweight Litecoin Wallet",
+    description="Lightweight Mediterraneancoin Wallet",
     author="ecdsa",
     author_email="ecdsa@github",
     license="GNU GPLv3",
-    url="http://electrum-med.org",
-    long_description="""Lightweight Litecoin Wallet"""
+    url="http://social.mediterraneancoin.org",
+    long_description="""Lightweight Mediterraneancoin Wallet"""
 )
