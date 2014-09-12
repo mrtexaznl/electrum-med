@@ -2,16 +2,16 @@
 # sudo desktop-file-install electrum.desktop
 
 [Desktop Entry]
-Comment=Lightweight Litecoin Client
-Exec=electrum-ltc %u
-GenericName[en_US]=Electrum-LTC
-GenericName=Electrum-LTC
-Icon=/usr/share/app-install/icons/electrum-ltc.png
-Name[en_US]=Electrum Litecoin Wallet
-Name=Electrum Litecoin Wallet
+Comment=Lightweight Mediterraneancoin Client
+Exec=electrum-med %u
+GenericName[en_US]=Electrum-MED
+GenericName=Electrum-MED
+Icon=/usr/share/app-install/icons/electrum-med.png
+Name[en_US]=Electrum MediterraneanCoin Wallet
+Name=Electrum MediterraneanCoin Wallet
 Categories=Network;
 StartupNotify=false
 Terminal=false
 Type=Application
-MimeType=x-scheme-handler/litecoin
+MimeType=x-scheme-handler/mediterraneancoin
 

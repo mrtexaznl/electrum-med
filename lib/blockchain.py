@@ -21,12 +21,16 @@ import threading, time, Queue, os, sys, shutil
 from util import user_dir, appdata_dir, print_error, print_msg
 from bitcoin import *
 
-try:
-    from ltc_scrypt import getPoWHash
-except ImportError:
-    print_msg("Warning: ltc_scrypt not available, using fallback")
-    from scrypt import scrypt_1024_1_1_80 as getPoWHash
+#try:
+#    from med_scrypt import getPoWHash
+#except ImportError:
+#    print_msg("Warning: med_scrypt not available, using fallback")
+#    from scrypt import scrypt_1024_1_1_80 as getPoWHash
 
+try:
+    from medcoin_hybrid import getPoWHash
+except ImportError:
+    print_msg("Warning: medcoin_hybrid not available, download and install from https://github.com/mrtexaznl/medcoin_hybrid")
 
 class Blockchain(threading.Thread):
 
@@ -38,7 +42,7 @@ class Blockchain(threading.Thread):
         self.lock = threading.Lock()
         self.local_height = 0
         self.running = False
-        self.headers_url = 'http://headers.electrum-ltc.org/blockchain_headers'
+        self.headers_url = 'http://headers.electrum-med.org/blockchain_headers'
         self.set_local_height()
         self.queue = Queue.Queue()
 

@@ -9,10 +9,10 @@ import threading
 import time
 import re
 from decimal import Decimal
-from electrum_ltc.plugins import BasePlugin
-from electrum_ltc.i18n import _
-from electrum_ltc_gui.qt.util import *
-from electrum_ltc_gui.qt.amountedit import AmountEdit
+from electrum_med.plugins import BasePlugin
+from electrum_med.i18n import _
+from electrum_med_gui.qt.util import *
+from electrum_med_gui.qt.amountedit import AmountEdit
 
 
 EXCHANGES = ["Bit2C",
@@ -104,7 +104,7 @@ class Exchanger(threading.Thread):
         quote_currencies = {"NIS": 0.0}
         for cur in quote_currencies:
             try:
-                quote_currencies[cur] = self.get_json('www.bit2c.co.il', "/Exchanges/LTC" + cur + "/Ticker.json")["ll"]
+                quote_currencies[cur] = self.get_json('www.bit2c.co.il', "/Exchanges/MED" + cur + "/Ticker.json")["ll"]
             except Exception:
                 pass
         with self.lock:
@@ -118,8 +118,8 @@ class Exchanger(threading.Thread):
             return
         quote_currencies = {}
         try:
-            for r in jsonresp["LTC"]:
-                quote_currencies[r] = Decimal(jsonresp["LTC"][r])
+            for r in jsonresp["MED"]:
+                quote_currencies[r] = Decimal(jsonresp["MED"][r])
             with self.lock:
                 self.quote_currencies = quote_currencies
         except KeyError:
@@ -130,7 +130,7 @@ class Exchanger(threading.Thread):
         quote_currencies = {"USD": 0.0}
         for cur in quote_currencies:
             try:
-                quote_currencies[cur] = self.get_json('api.bitfinex.com', "/v1/pubticker/ltc" + cur.lower())["last_price"]
+                quote_currencies[cur] = self.get_json('api.bitfinex.com', "/v1/pubticker/med" + cur.lower())["last_price"]
             except Exception:
                 pass
         with self.lock:
@@ -141,7 +141,7 @@ class Exchanger(threading.Thread):
         quote_currencies = {"CNH": 0.0, "EUR": 0.0, "GBP": 0.0, "RUR": 0.0, "USD": 0.0}
         for cur in quote_currencies:
             try:
-                quote_currencies[cur] = self.get_json('btc-e.com', "/api/2/ltc_" + cur.lower() + "/ticker")["ticker"]["last"]
+                quote_currencies[cur] = self.get_json('btc-e.com', "/api/2/med_" + cur.lower() + "/ticker")["ticker"]["last"]
             except Exception:
                 pass
         with self.lock:
@@ -150,7 +150,7 @@ class Exchanger(threading.Thread):
 
     def update_CNY(self):
         try:
-            jsonresp = self.get_json('data.btcchina.com', "/data/ticker?market=ltccny")
+            jsonresp = self.get_json('data.btcchina.com', "/data/ticker?market=medcny")
         except Exception:
             return
         quote_currencies = {"CNY": 0.0}
@@ -167,7 +167,7 @@ class Exchanger(threading.Thread):
         quote_currencies = {"EUR": 0.0, "USD": 0.0}
         for cur in quote_currencies:
             try:
-                quote_currencies[cur] = self.get_json('www.crypto-trade.com', "/api/1/ticker/ltc_" + cur.lower())["data"]["last"]
+                quote_currencies[cur] = self.get_json('www.crypto-trade.com', "/api/1/ticker/med_" + cur.lower())["data"]["last"]
             except Exception:
                 pass
         with self.lock:
@@ -182,7 +182,7 @@ class Exchanger(threading.Thread):
         quote_currencies = {}
         try:
             for r in jsonresp["data"]:
-                if jsonresp["data"][r]["name"].startswith("LTC_"):
+                if jsonresp["data"][r]["name"].startswith("MED_"):
                     quote_currencies[r[-3:]] = Decimal(jsonresp["data"][r]["last"])
             with self.lock:
                 self.quote_currencies = quote_currencies
@@ -197,8 +197,8 @@ class Exchanger(threading.Thread):
             return
         quote_currencies = {}
         try:
-            for r in jsonresp["prices"]["LTC"]:
-                quote_currencies[r] = Decimal(jsonresp["prices"]["LTC"][r])
+            for r in jsonresp["prices"]["MED"]:
+                quote_currencies[r] = Decimal(jsonresp["prices"]["MED"][r])
             with self.lock:
                 self.quote_currencies = quote_currencies
         except KeyError:
@@ -208,7 +208,7 @@ class Exchanger(threading.Thread):
     def update_kk(self):
         try:
             resp_currencies = self.get_json('api.kraken.com', "/0/public/AssetPairs")["result"]
-            pairs = ','.join([k for k in resp_currencies if k.startswith("XLTCZ")])
+            pairs = ','.join([k for k in resp_currencies if k.startswith("XMEDZ")])
             resp_rate = self.get_json('api.kraken.com', "/0/public/Ticker?pair=" + pairs)["result"]
         except Exception:
             return
@@ -221,7 +221,7 @@ class Exchanger(threading.Thread):
 
     def update_ok(self):
         try:
-            jsonresp = self.get_json('www.okcoin.com', "/api/ticker.do?symbol=ltc_cny")
+            jsonresp = self.get_json('www.okcoin.com', "/api/ticker.do?symbol=med_cny")
         except Exception:
             return
         quote_currencies = {"CNY": 0.0}
@@ -238,7 +238,7 @@ class Exchanger(threading.Thread):
         quote_currencies = {"CAD": 0.0, "USD": 0.0}
         for cur in quote_currencies:
             try:
-                quote_currencies[cur] = self.get_json('api.vaultofsatoshi.com', "/public/ticker?order_currency=LTC&payment_currency=" + cur)["data"]["closing_price"]["value"]
+                quote_currencies[cur] = self.get_json('api.vaultofsatoshi.com', "/public/ticker?order_currency=MED&payment_currency=" + cur)["data"]["closing_price"]["value"]
             except Exception:
                 pass
         with self.lock:
@@ -296,7 +296,7 @@ class Plugin(BasePlugin):
         self.get_fiat_price_text(r)
         quote = r.get(0)
         if quote:
-            price_text = "1 LTC~%s"%quote
+            price_text = "1 MED~%s"%quote
             fiat_currency = quote[-3:]
             btc_price = self.btc_rate
             fiat_balance = Decimal(btc_price) * (Decimal(btc_balance)/100000000)
@@ -370,7 +370,7 @@ class Plugin(BasePlugin):
                 cur_currency = self.config.get('currency', "EUR")
                 if cur_currency in ("ARS", "EUR", "USD", "VEF"):
                     try:
-                        resp_hist = self.exchanger.get_json('api.bitcoinvenezuela.com', "/historical/index.php?coin=LTC")[cur_currency + '_LTC']
+                        resp_hist = self.exchanger.get_json('api.bitcoinvenezuela.com', "/historical/index.php?coin=MED")[cur_currency + '_MED']
                     except Exception:
                         return
                 else:
@@ -593,7 +593,7 @@ class Plugin(BasePlugin):
         self.get_fiat_price_text(r)
         quote = r.get(0)
         if quote:
-          text = "1 LTC~%s"%quote
+          text = "1 MED~%s"%quote
           grid.addWidget(QLabel(_(text)), 4, 0, 3, 0)
         else:
             self.gui.main_window.show_message(_("Exchange rate not available.  Please check your network connection."))
@@ -612,7 +612,7 @@ class Plugin(BasePlugin):
 
         quote = quote[:-4]
         btcamount = Decimal(fiat) / Decimal(quote)
-        if str(self.gui.main_window.base_unit()) == "mLTC":
+        if str(self.gui.main_window.base_unit()) == "mMED":
             btcamount = btcamount * 1000
         quote = "%.8f"%btcamount
         self.gui.main_window.amount_e.setText( quote )
