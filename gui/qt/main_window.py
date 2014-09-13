@@ -335,7 +335,7 @@ class ElectrumWindow(QMainWindow):
 
     def show_about(self):
         QMessageBox.about(self, "Electrum-MED",
-            _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum's focus is speed, with low resource usage and simplifying Mediterraneancoin. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Litecoin system."))
+            _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum's focus is speed, with low resource usage and simplifying Mediterraneancoin. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Mediterraneancoin system."))
 
     def show_report_bug(self):
         QMessageBox.information(self, "Electrum-MED - " + _("Reporting Bugs"),
@@ -637,7 +637,7 @@ class ElectrumWindow(QMainWindow):
         grid.addWidget(QLabel(_('Pay to')), 1, 0)
         grid.addWidget(self.payto_e, 1, 1, 1, 3)
 
-        grid.addWidget(HelpButton(_('Recipient of the funds.') + '\n\n' + _('You may enter a Mediterraneancoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Litecoin address)')), 1, 4)
+        grid.addWidget(HelpButton(_('Recipient of the funds.') + '\n\n' + _('You may enter a Mediterraneancoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Mediterraneancoin address)')), 1, 4)
 
         completer = QCompleter()
         completer.setCaseSensitivity(False)
