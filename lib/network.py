@@ -4,25 +4,12 @@ from bitcoin import *
 import interface
 from blockchain import Blockchain
 
-DEFAULT_PORTS = {'t':'59378', 's':'59379', 'h':'8081', 'g':'8082'}
+DEFAULT_PORTS = {'t':'59378', 's':'59379', 'h':'8091', 'g':'8092'}
 
 DEFAULT_SERVERS = {
-    'alocoin.org': DEFAULT_PORTS,
-    'cmed.mooo.com': {'t':'50003', 's':'50004', 'h':'8083', 'g':'8084'},
-    'electrum-a.cloudapp.net': DEFAULT_PORTS,
-    'electrum-med.bysh.me': DEFAULT_PORTS,
-    'electrum-med.koddos.com': DEFAULT_PORTS,
-    'electrum-med.thwg.org': DEFAULT_PORTS,
-    'electrum.litecoinguard.com': DEFAULT_PORTS,
-    'electrum.med.xurious.com': DEFAULT_PORTS,
-    'electrum.lurkmore.com': DEFAULT_PORTS,
-    'electrum.mmitech.info': DEFAULT_PORTS,
-    'electrum.snicter.com': DEFAULT_PORTS,
-    'electrum.wmpb.tc': {'t':'50001', 's':'50002', 'h':'50081', 'g':'50082'},
-    'electrum1.weminemed.com': DEFAULT_PORTS,
-    'explorer.litecoin.net': DEFAULT_PORTS,
-    'med.electrum.in': DEFAULT_PORTS,
-    'rho.hicapacity.org': DEFAULT_PORTS,
+    'foundry.mediterraneancoin.org': DEFAULT_PORTS,
+#    'cmed.mooo.com': {'t':'50003', 's':'50004', 'h':'8083', 'g':'8084'},
+#    'electrum-a.cloudapp.net': DEFAULT_PORTS,
 }
 
 

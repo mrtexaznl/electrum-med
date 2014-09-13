@@ -5,12 +5,12 @@ import sys, time, electrum_med as electrum
 try:
     addr = sys.argv[1]
 except Exception:
-    print "usage: watch_address <litecoin_address>"
+    print "usage: watch_address <mediterraneancoin_address>"
     sys.exit(1)
 
 
 # 1. start the interface and wait for connection
-interface = electrum.Interface('electrum-med.bysh.me:50002:s')
+interface = electrum.Interface('foundry.mediterraneancoin.org:50002:s')
 interface.start(wait = True)
 if not interface.is_connected:
     print "not connected"

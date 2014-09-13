@@ -28,7 +28,7 @@ to launch it, type:
 
 In another terminal, you may send a request from the command line (it
 will send the request to the running daemon via http). For example,
-here is a request for 0.1 litecoins, that requires two confirmations,
+here is a request for 0.1 mediterraneancoins, that requires two confirmations,
 and expires in 120 minutes:
 
 > python merchant.py request 0.1 2 120

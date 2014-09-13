@@ -142,7 +142,7 @@ class MiniWindow(QDialog):
 
         # Bitcoin address code
         self.address_input = QLineEdit()
-        self.address_input.setPlaceholderText(_("Enter a Litecoin address or contact"))
+        self.address_input.setPlaceholderText(_("Enter a Mediterraneancoin address or contact"))
         self.address_input.setObjectName("address_input")
 
         self.address_input.setFocusPolicy(Qt.ClickFocus)
@@ -571,7 +571,7 @@ class ReceivePopup(QDialog):
         self.close()
 
     def setup(self, address):
-        label = QLabel(_("Copied your Litecoin address to the clipboard!"))
+        label = QLabel(_("Copied your Mediterraneancoin address to the clipboard!"))
         address_display = QLineEdit(address)
         address_display.setReadOnly(True)
         resize_line_edit_width(address_display, address)
@@ -581,7 +581,7 @@ class ReceivePopup(QDialog):
         main_layout.addWidget(address_display)
 
         self.setMouseTracking(True)
-        self.setWindowTitle("Electrum - " + _("Receive Litecoin payment"))
+        self.setWindowTitle("Electrum - " + _("Receive Mediterraneancoin payment"))
         self.setWindowFlags(Qt.Window|Qt.FramelessWindowHint|
                             Qt.MSWindowsFixedSizeDialogHint)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
@@ -693,7 +693,7 @@ class MiniActuator:
 
         if dest_address is None or not is_valid(dest_address):
             QMessageBox.warning(parent_window, _('Error'), 
-                _('Invalid Litecoin Address') + ':\n' + address, _('OK'))
+                _('Invalid Mediterraneancoin Address') + ':\n' + address, _('OK'))
             return False
 
         amount = D(unicode(amount)) * (10*self.g.decimal_point)

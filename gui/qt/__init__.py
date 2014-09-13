@@ -155,7 +155,7 @@ class ElectrumGui:
         try:
             address, amount, label, message, request_url, url = util.parse_url(url)
         except Exception:
-            QMessageBox.warning(self.main_window, _('Error'), _('Invalid litecoin URL'), _('OK'))
+            QMessageBox.warning(self.main_window, _('Error'), _('Invalid mediterraneancoin URL'), _('OK'))
             return
 
         if amount:
