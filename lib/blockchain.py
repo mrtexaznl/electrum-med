@@ -100,7 +100,7 @@ class Blockchain(threading.Thread):
                 
                 # verify the chain
                 if self.verify_chain( chain ):
-                    print_error("height:", height, i.server)
+                    #print_error("height:", height, i.server)
                     for header in chain:
                         self.save_header(header)
                 else:
@@ -294,13 +294,13 @@ class Blockchain(threading.Thread):
 
         bits = last.get('bits') 
         # convert to bignum
-        #nSize = (bits >> 24)
+        nSize = (bits >> 24)
                
         
         MM = 256*256*256
         a = bits%MM
          
-        #print_error("bits=%d nSize=%d a=%d"%(bits,nSize,a))
+        #print_error("bits=%d nSize=%d a=%d bits/MM=%d"%(bits,nSize,a,bits/MM))
         
         if a < 0x8000:
             a *= 256
