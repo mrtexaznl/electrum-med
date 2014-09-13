@@ -52,9 +52,7 @@ a SimpleConfig instance then reads the wallet file.
         # Make directory if it does not yet exist.
         if not os.path.exists(self.path):
             os.mkdir(self.path)
-
-        print_error( "electrum directory", self.path)
-
+ 
         # portable wallet: use the same directory for wallet and headers file
         #if options.get('portable'):
         #    self.wallet_config['blockchain_headers_path'] = os.path.dirname(self.path)
@@ -145,6 +143,8 @@ a SimpleConfig instance then reads the wallet file.
         if not self.path: return
 
         path = os.path.join(self.path, "config")
+        #print_error(path)
+        
         if os.path.exists(path):
             try:
                 with open(path, "r") as f:

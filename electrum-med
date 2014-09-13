@@ -155,6 +155,7 @@ if __name__ == '__main__':
     options, args = parser.parse_args()
     if options.portable and options.wallet_path is None:
         options.electrum_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum-med_data')
+        print_error(options.electrum_path)
 
     # config is an object passed to the various constructors (wallet, interface, gui)
     if is_android:
@@ -172,6 +173,7 @@ if __name__ == '__main__':
 
     set_verbosity(config_options.get('verbose'))
 
+    print_error(config_options)
     config = SimpleConfig(config_options)
 
     if len(args) == 0:
