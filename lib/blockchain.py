@@ -294,13 +294,13 @@ class Blockchain(threading.Thread):
 
         bits = last.get('bits') 
         # convert to bignum
-        nSize = (bits >> 24)
+        #nSize = (bits >> 24)
                
         
         MM = 256*256*256
         a = bits%MM
          
-        print_error("bits=%d nSize=%d a=%d"%(bits,nSize,a))
+        #print_error("bits=%d nSize=%d a=%d"%(bits,nSize,a))
         
         if a < 0x8000:
             a *= 256
@@ -323,7 +323,7 @@ class Blockchain(threading.Thread):
 
         new_bits = c + MM * i
         
-        print_error("new_bits=%d bits=%d"%(new_bits,bits))
+        #print_error("new_bits=%d bits=%d"%(new_bits,bits))
         
         return new_bits, new_target
         #return bits, new_target
