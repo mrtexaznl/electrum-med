@@ -7,8 +7,10 @@ from blockchain import Blockchain
 DEFAULT_PORTS = {'t':'59378', 's':'59379', 'h':'9378', 'g':'9379'}
 
 DEFAULT_SERVERS = {
+#    'foundry.mediterraneancoin.org': DEFAULT_PORTS,
+#    'foundry2.mediterraneancoin.org': DEFAULT_PORTS
     'foundry.mediterraneancoin.org': {'t':'59378', 's':'59379'},
-    'foundry2.mediterraneancoin.org': {'t':'59378'},
+    'foundry2.mediterraneancoin.org': {'t':'59378', 's':'59379'}    
 #    'cmed.mooo.com': {'t':'50003', 's':'50004', 'h':'8083', 'g':'8084'},
 #    'electrum-a.cloudapp.net': DEFAULT_PORTS,
 }
@@ -48,14 +50,18 @@ def parse_servers(result):
 
 
 def filter_protocol(servers, p):
+    #print_error(p)
     l = []
     for k, protocols in servers.items():
+        #print_error(protocols)
         if p in protocols:
+            
             l.append( ':'.join([k, protocols[p], p]) )
     return l
     
 
 def pick_random_server(p='s'):
+    #print_error(p)
     return random.choice( filter_protocol(DEFAULT_SERVERS,p) )
 
 from simple_config import SimpleConfig
@@ -73,6 +79,7 @@ class Network(threading.Thread):
         self.queue = Queue.Queue()
         self.callbacks = {}
         self.protocol = self.config.get('protocol','s')
+        #print_error("self.protocol=%s"%(self.protocol))
         self.running = False
 
         # Server for addresses and transactions
