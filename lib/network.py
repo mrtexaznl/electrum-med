@@ -7,7 +7,8 @@ from blockchain import Blockchain
 DEFAULT_PORTS = {'t':'59378', 's':'59379', 'h':'9378', 'g':'9379'}
 
 DEFAULT_SERVERS = {
-    'foundry.mediterraneancoin.org': DEFAULT_PORTS,
+    'foundry.mediterraneancoin.org': {'t':'59378'},
+    'foundry2.mediterraneancoin.org': {'t':'59378'},
 #    'cmed.mooo.com': {'t':'50003', 's':'50004', 'h':'8083', 'g':'8084'},
 #    'electrum-a.cloudapp.net': DEFAULT_PORTS,
 }
