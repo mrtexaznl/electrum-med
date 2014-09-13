@@ -4,7 +4,7 @@ from bitcoin import *
 import interface
 from blockchain import Blockchain
 
-DEFAULT_PORTS = {'t':'59378', 's':'59379', 'h':'8091', 'g':'8092'}
+DEFAULT_PORTS = {'t':'59378', 's':'59379', 'h':'9378', 'g':'9379'}
 
 DEFAULT_SERVERS = {
     'foundry.mediterraneancoin.org': DEFAULT_PORTS,
