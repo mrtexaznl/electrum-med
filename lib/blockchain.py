@@ -141,6 +141,8 @@ class Blockchain(threading.Thread):
                 return False
 
             prev_header = header
+            
+            time.sleep(0.1)
 
         return True
 
@@ -181,6 +183,7 @@ class Blockchain(threading.Thread):
             previous_header = header
             previous_hash = self.hash_header(header)
 
+            time.sleep(0.1)
         self.save_chunk(index, data)
         print_error("validated chunk %d"%height)
 
