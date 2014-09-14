@@ -142,7 +142,8 @@ class Blockchain(threading.Thread):
 
             prev_header = header
             
-            time.sleep(0.1)
+            print_error("verify_chain sleep 0.01 block_height=%d"%block_height)
+            time.sleep(0.01)
 
         return True
 
@@ -174,16 +175,19 @@ class Blockchain(threading.Thread):
             #print_error(bits == header.get('bits'))
             #print_error(bits)
             #print_error(header.get('bits'))
-            #print_error(int('0x'+_hash,16) < target)
-            
+            #print_error(int('0x'+_hash,16) < target)            
+ 
             assert previous_hash == header.get('prev_block_hash')
+ 
             #assert bits == header.get('bits')
             assert int('0x'+_hash,16) < target
+ 
 
             previous_header = header
             previous_hash = self.hash_header(header)
 
-            time.sleep(0.1)
+            print_error("verify_chunk sleep 0.01 index=%d i=%i"%(index,i))
+            time.sleep(0.01)
         self.save_chunk(index, data)
         print_error("validated chunk %d"%height)
 
@@ -413,7 +417,7 @@ class Blockchain(threading.Thread):
                 self.verify_chunk(n, r)
                 n = n + 1
             except Exception:
-                print_error('Verify chunk failed!')
+                print_error(str(Exception))
                 n = n - 1
                 if n < 0:
                     return False
