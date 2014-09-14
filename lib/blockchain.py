@@ -142,7 +142,7 @@ class Blockchain(threading.Thread):
 
             prev_header = header
             
-            print_error("verify_chain sleep 0.01 block_height=%d"%block_height)
+            print_error("verify_chain sleep 0.01 block_height=%d"%height)
             time.sleep(0.01)
 
         return True
