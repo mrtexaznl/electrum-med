@@ -1293,7 +1293,8 @@ class ElectrumWindow(QMainWindow):
 
 
     def create_console_tab(self):
-        from console import Console
+        #from console import Console
+        from electrum_med_gui.qt.console import Console
         self.console = console = Console()
         return console
 

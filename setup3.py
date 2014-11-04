@@ -1,12 +1,11 @@
-#!/usr/bin/python
-
-# python setup.py sdist --format=zip,gztar
-
-from setuptools import setup
+from distutils.core import setup
 import os
 import sys
 import platform
 import imp
+import py2exe
+
+import ecdsa
 
 
 version = imp.load_source('version', 'lib/version.py')
@@ -14,6 +13,8 @@ util = imp.load_source('version', 'lib/util.py')
 
 if sys.version_info[:3] < (2, 6, 0):
     sys.exit("Error: Electrum requires Python version >= 2.6.0...")
+
+
 
 usr_share = '/usr/share'
 if not os.access(usr_share, os.W_OK):
@@ -55,16 +56,26 @@ data_files += [
 ]
 
 
+
+
+#setup(windows=[ "electrum-med" ])
+
+
 setup(
-    name="Electrum_MED",
+    name="Electrum-MED",
     version=version.ELECTRUM_VERSION,
-    install_requires=['slowaes', 'ecdsa>=0.9', 'medcoin_hybrid'],
+    #install_requires=['slowaes', 'ecdsa', 'medcoin_hybrid'],
     package_dir={
         'electrum_med': 'lib',
         'electrum_med_gui': 'gui',
         'electrum_med_plugins': 'plugins',
     },
-    scripts=['electrum-med'],
+    #options={"py2exe" : {"includes" : ["ecdsa", "PyQt4._qt"]}}
+    #windows=['electrum-med'],
+    windows=[{"script":"electrum-med"}],
+    options={"py2exe" : {  "dll_excludes": ["MSVCP90.dll", "HID.DLL", "w9xpopen.exe"], "includes": ["sip",  "plugins"] }}, 
+    #"xref" : ["false"],
+    #zipfile="zipfile//",
     data_files=data_files,
     py_modules=[
         'electrum_med.account',
@@ -122,3 +133,4 @@ setup(
     url="http://social.mediterraneancoin.org",
     long_description="""Lightweight Mediterraneancoin Wallet"""
 )
+
