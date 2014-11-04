@@ -52,7 +52,11 @@ data_files += [
     (os.path.join(appdata_dir, "dark"), [
         "data/dark/name.cfg",
         "data/dark/style.css"
-    ])
+    ]),
+    ("lib", [
+        "lib/paymentrequest.proto"
+    ])  
+
 ]
 
 
@@ -73,6 +77,7 @@ setup(
     #options={"py2exe" : {"includes" : ["ecdsa", "PyQt4._qt"]}}
     #windows=['electrum-med'],
     windows=[{"script":"electrum-med"}],
+    console=[{"script": "lib//paymentrequest.py" }],
     options={"py2exe" : {  "dll_excludes": ["MSVCP90.dll", "HID.DLL", "w9xpopen.exe"], "includes": ["sip",  "plugins"] }}, 
     #"xref" : ["false"],
     #zipfile="zipfile//",

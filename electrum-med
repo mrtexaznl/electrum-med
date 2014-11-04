@@ -54,7 +54,7 @@ if __builtin__.use_local_modules:
     
 
 #from electrum_med import *  # todo: import * is generally frowned upon. should import just what is used
-import electrum_med
+#import electrum_med
 from electrum_med.util import print_msg, print_stderr
 
 
@@ -161,6 +161,7 @@ from electrum_med import set_verbosity, print_error, SimpleConfig, Network
 #from electrum_med import *
 
 #from electrum_med.paymentrequest import PaymentRequest
+#from electrum_med import PaymentRequest
 from electrum_med_gui.qt.console import Console
 
 if __name__ == '__main__':
@@ -199,7 +200,7 @@ if __name__ == '__main__':
         url = args[0]
         cmd = 'gui'
     else:
-        url = args[0]
+        url = ""
         cmd = args[0]
 
     if cmd == 'gui':
