@@ -8,7 +8,7 @@
 
   ;Name and file
   Name "Electrum-MED"
-  OutFile "dist/electrum-med-setup.exe"
+  OutFile "dist2/electrum-med-setup.exe"
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES\Electrum-MED"
@@ -59,7 +59,8 @@ Section
   SetOutPath "$INSTDIR"
 
   ;ADD YOUR OWN FILES HERE...
-  file /r dist\electrum-med\*.*
+  ;file /r dist\electrum-med\*.*
+  file /r dist\*.*
 
   ;Store installation folder
   WriteRegStr HKCU "Software\Electrum-MED" "" $INSTDIR
