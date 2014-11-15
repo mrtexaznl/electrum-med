@@ -20,6 +20,7 @@
 import threading, time, Queue, os, sys, shutil
 from util import user_dir, appdata_dir, print_error, print_msg
 from bitcoin import *
+import random
 
 #try:
 #    from med_scrypt import getPoWHash
@@ -162,12 +163,23 @@ class Blockchain(threading.Thread):
             previous_hash = self.hash_header(prev_header)
 
         bits, target = self.get_target(index)
+        
+        counter = 0
+        rndrange = random.randint(18,23)                  
 
         for i in range(num):
+            counter = counter + 1
+            cmod = counter % rndrange
+            if counter >= len(range(num)) - 5:
+                cmod = 0
+            
+             
             height = index*2016 + i
             raw_header = data[i*80:(i+1)*80]
             header = self.header_from_string(raw_header)
-            _hash = self.pow_hash_header(header)
+            
+            if cmod == 0:
+                _hash = self.pow_hash_header(header)
             
             
             #print_error("verify_chunk index=%d i=%i"%(index,i))
@@ -180,7 +192,8 @@ class Blockchain(threading.Thread):
             assert previous_hash == header.get('prev_block_hash')
  
             #assert bits == header.get('bits')
-            assert int('0x'+_hash,16) < target
+            if cmod == 0:            
+                assert int('0x'+_hash,16) < target
  
 
             previous_header = header
@@ -190,6 +203,8 @@ class Blockchain(threading.Thread):
             time.sleep(0.01)
         self.save_chunk(index, data)
         print_error("validated chunk %d"%height)
+
+        
 
         
 
